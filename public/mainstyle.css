@@ -1,0 +1,434 @@
+#login {
+  text-align:right;
+  list-style-type: none;
+  margin: 0;
+  padding-top:7px;
+  padding-right:30px;
+  overflow: hidden;
+}
+
+#login li {
+  display: inline;
+}
+#login li a {
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  padding: 0 15px;
+}
+#login li a:hover {
+  text-decoration:underline;
+}
+#Menu {
+  padding-left: 0px;
+  text-align:center;
+  list-style-type: none;
+  overflow: hidden;
+}
+
+#Menu li {
+  display: inline;
+}
+
+#Menumargin {
+  margin-right: 50px;
+}
+
+#Menu li a {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(14, 13, 13);
+  text-decoration: none;
+}
+
+#Menu li a:hover {
+  color: rgb(122, 122, 124);
+}
+
+#Worklist {
+  display: inline-block;
+  text-align:center;
+  list-style-type: none;
+  overflow: hidden;
+  padding-left: 0px;
+}
+
+#List_create {
+  text-decoration: none;
+  color:DimGray ;
+}
+
+
+#workspan {
+  font-size: 10px;
+  display: inline-block;
+  text-align:left;
+  margin-right: 30px;
+}
+
+#Worklist li {
+  margin-bottom: 50px ;
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(14, 13, 13);
+  text-decoration: none;
+}
+
+#work_createbtn{
+  color: rgb(73, 73, 73);
+  padding: 0;
+}
+
+#work_textarea{
+  resize: none;
+}
+
+#work_align{
+  display:inline-block;
+  text-decoration: none;
+}
+
+#work_button_color{
+  display:inline-block;
+  color:black;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+#Delete_work {
+  margin-top: 30px;
+  margin-left: 10px;
+  background-color: white;
+  color: red;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+#loginID{
+  text-align: center;
+  margin-top: 150px;
+}
+
+#loginID div{
+  margin-bottom: 20px;
+}
+
+#loginID p{
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+#loginID span input{
+  height: 30px;
+  width: 300px;
+}
+
+#loginID button{
+  height: 35px;
+  width: 305px;
+}
+
+#join{
+  text-align: center;
+  margin-top: 150px;
+}
+
+#join p{
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+#join form{
+  display: inline-block;
+}
+
+#join input{
+  height: 30px;
+  width: 300px;
+}
+
+#join select{
+  height: 30px;
+  width: 70px;
+}
+
+#join span{
+  font-weight: bold;
+}
+
+#title {
+  font-size: 60px;
+  text-align:center;
+  margin: 0;
+  padding-top: 40px;
+  padding-bottom: 50px;
+  overflow: hidden;
+}
+
+#title a {
+  color: #333;
+  text-decoration: none;
+}
+
+#body {
+  text-align:center;
+  margin-top: 100px;
+}
+
+#noboard {
+  margin-top: 150px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#board_table {
+  width: 40%;
+  border-collapse: collapse;
+}
+
+#board_table > tbody > tr > td{
+  border: 1px solid;
+}
+
+#board_table > tbody > tr > th{
+  border: 1px solid;
+}
+
+#board_create_button{
+  color: rgb(73, 73, 73);
+  padding: 0;
+}
+
+
+#board_title{
+  text-align: left;
+  font-size: 20px;
+  padding-right: 0px;
+}
+
+
+#board_right{
+  text-align: right;
+  width: 70px;
+  font-size: 12px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#board_right_name{
+  text-align: right;
+  width: 70px;
+  padding-right: 10px;
+  font-size: 12px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#board_content{
+  text-align: left;
+  font-size: 15px;
+}
+
+#board_content > td > textarea{
+  width: 100%;
+  min-height: 100px;
+  border: 0px;
+  padding: 0px;
+  resize: none;
+}
+
+#board_comment{
+  width: 40%;
+  min-height: 20px;
+  border: 1px solid;
+  border-collapse: collapse;
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+#board_comment_bottom{
+  border-bottom: 1px;
+}
+
+#board_comment_name{
+  text-align: left;
+  font-size: 17px;
+  padding-left: 10px;
+  width: 15%;
+  font-weight: bold;
+}
+
+#board_comment_content{
+  text-align: left;
+  font-size: 17px;
+  padding: 10px;
+  padding-top: 20px;
+  border-top:0;
+  word-break: break-all;
+}
+
+#board_comment_date{
+  text-align: left;
+  width: 75%;
+  padding-right: 10px;
+  height: 10px;
+  font-size: 12px;
+}
+
+#board_comment_text{
+  padding-left: 10px;
+  text-align: left;
+  font-size: 15px;
+}
+
+#board_textarea{
+  resize: none;
+}
+
+#comment_title{
+  text-align: center;
+  margin-top: 40px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#board_button{
+  text-align: right;
+  margin-top: 5px;
+}
+
+#board_comment_button{
+  color: rgb(73, 73, 73);
+  padding: 0;
+  font-size: large;
+  width: 40px;
+}
+
+#board_comment_delete{
+  color: rgb(73, 73, 73);
+  padding: 0;
+  ;
+}
+
+.comunity_inline{
+  display: inline-block;
+}
+
+#comunity_btn_update_link {
+  color: rgb(73, 73, 73);
+  padding: 0;
+}
+
+#comunity_btn_delete_link {
+  color: rgb(73, 73, 73);
+  padding: 0;
+}
+
+#board_upbtn {
+  text-align: right;
+  width: 70%;
+  display: inline-block;
+}
+
+#update_link {
+  color: rgb(73, 73, 73);
+  padding: 0;
+}
+
+#tablenum{
+  width: 40px;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+#tabledate{
+  width: 100px;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+#tableview{
+  width: 60px;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+#tableauthor{
+  width: 50px;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+#tabletitle{
+  padding-right: 0;
+  padding-left: 0;
+}
+
+#tablecreate{
+  text-align: right;
+}
+
+#mypage_pwcheck{
+  text-align: center;
+  margin-top: 80px;
+}
+
+#mypage_pwcheck div{
+  margin-bottom: 20px;
+  font-size: 17px;
+  font-weight: normal;
+}
+
+#mypage_pwcheck p{
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+#mypage_pwcheck span input{
+  height: 30px;
+  width: 300px;
+}
+
+#mypage_pwcheck button{
+  height: 35px;
+  width: 305px;
+}
+
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: calc(100vh - 0px);
+          min-height: 300px;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration:underline;
+}
+
+#board_cbtn_align{
+  width: 70%;
+  text-align: right;
+  display: inline-block;
+}
+
+#board-create-title{
+  width:70%; 
+  display:inline-block;
+  resize: none;
+}
+
+#board-create-content{
+  width:70%; 
+  display:inline-block;
+  resize: none;
+}
