@@ -1,48 +1,13 @@
-#login {
-  text-align:right;
-  list-style-type: none;
-  margin: 0;
-  padding-top:7px;
-  padding-right:30px;
-  overflow: hidden;
-}
 
-#login li {
-  display: inline;
-}
-#login li a {
-  color: black;
-  text-align: center;
-  text-decoration: none;
-  padding: 0 15px;
-}
-#login li a:hover {
-  text-decoration:underline;
-}
-#Menu {
-  padding-left: 0px;
-  text-align:center;
-  list-style-type: none;
-  overflow: hidden;
-}
-
-#Menu li {
-  display: inline;
-}
-
-#Menumargin {
-  margin-right: 50px;
-}
-
-#Menu li a {
-  font-size: 20px;
+.navbar-brand{
+  height:60px;
+  line-height: 45px;
+  font-size:50px;
   font-weight: bold;
-  color: rgb(14, 13, 13);
-  text-decoration: none;
 }
 
-#Menu li a:hover {
-  color: rgb(122, 122, 124);
+#username{
+  color: white;
 }
 
 #Worklist {
@@ -174,7 +139,7 @@
 
 #body {
   text-align:center;
-  margin-top: 100px;
+  margin-top: 250px;
 }
 
 #noboard {
