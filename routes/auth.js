@@ -84,7 +84,7 @@ router.post('/join_process', function(req, res){
       var post = req.body;
       function keyfilter(post){
         var ch = post.join_id;
-        var filter = /[a-zA-Z]/   ;
+        var filter = /[a-zA-Z0-9]/   ;
         if(!filter.test(ch)){
               return false;
         }
@@ -99,7 +99,7 @@ router.post('/join_process', function(req, res){
       db.query(`SELECT id FROM members`, function(error, idcheck){
         if(idcheck.find(idvalue) === undefined){
           if(keyfilter(post)){
-            if(sanitize(post.join_pw).length > 0){
+            if(sanitize(post.join_pw).length > 8){
               if(sanitize(post.join_pw) === sanitize(post.join_pw2)){
                 if(sanitize(post.join_name).length > 0){
                   if(sanitize(post.join_phone).length > 0){
@@ -155,12 +155,13 @@ router.post('/join_process', function(req, res){
             }
             else{
               res.setHeader("Cache-Control", "no-store");
-              res.send('<script>alert("비밀번호를 입력해주세요.");window.location.href="/auth/join"</script>');
+              res.send('<script>alert("비밀번호는 8자리 이상 입력해주세요.");window.location.href="/auth/join"</script>');
             }
         }
         else{
           res.setHeader("Cache-Control", "no-store");
           res.send('<script>alert("아이디는 영문과 숫자만 입력해주세요.");window.location.href="/auth/join"</script>');
+          
         }
       }
         else{
