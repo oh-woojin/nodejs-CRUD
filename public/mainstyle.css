@@ -1,13 +1,80 @@
+.carousel-caption {
+  height:60%;
+}
+
+@media screen and (max-width: 900px) {
+  .carousel-caption {
+     display: none
+  }
+}
+
+.show{
+  background-color: black;
+  margin-top:2px;
+}
+
+.show > ul{
+  padding-left: 20px;
+}
+
+
+.show > ul >  #nav-leftmenu{
+  padding-left: 0px;
+}
+
+.nav-item{
+  margin-right: 30px;
+}
+
+.navbar-toggler{
+  background-color: black;
+}
+
+.navbar-toggler-icon{
+  color: black;
+}
+
+.navbar{
+  background-color: black;
+  padding: 0;
+  height: 110px;
+}
+
+.leftmenu{
+  padding-left: 20px;
+}
+
+.mx-autor{
+  height: 95px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.nav-link{
+  color: white;
+}
+
+#logo-size{
+  width: 310px;
+  height: 95px;
+}
+
+#hover-menu:hover{
+  color: gray;
+}
 
 .navbar-brand{
   height:60px;
   line-height: 45px;
   font-size:50px;
   font-weight: bold;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-right: 0px;
 }
 
 #username{
-  color: white;
+  color: gray;
 }
 
 #Worklist {
@@ -204,13 +271,12 @@
   resize: none;
 }
 
-#board_comment{
-  width: 40%;
-  min-height: 20px;
-  border: 1px solid;
-  border-collapse: collapse;
-  background-color: white;
-  margin-bottom: 20px;
+#comment-margin{
+  margin-top: 300px;
+}
+
+#comment-paging-margin{
+  margin-top: 100px;
 }
 
 #board_comment_bottom{
@@ -321,7 +387,7 @@
 }
 
 #tableauthor{
-  width: 50px;
+  width: 100px;
   padding-right: 0;
   padding-left: 0;
 }

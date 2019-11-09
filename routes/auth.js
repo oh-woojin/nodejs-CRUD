@@ -82,12 +82,23 @@ router.get('/join', function (req, res) {
 router.post('/join_process', function(req, res){
      
       var post = req.body;
+      function keyfilter(post){
+        var ch = post.join_id;
+        var filter = /[a-zA-Z]/   ;
+        if(!filter.test(ch)){
+              return false;
+        }
+        else{
+          return true;
+        }
+      }
       function idvalue(values){
         return values.id === sanitize(post.join_id);
        }
       var birth = `${sanitize(post.join_year)}-${sanitize(post.join_month)}-${sanitize(post.join_day)}`;
       db.query(`SELECT id FROM members`, function(error, idcheck){
         if(idcheck.find(idvalue) === undefined){
+          if(keyfilter(post)){
             if(sanitize(post.join_pw).length > 0){
               if(sanitize(post.join_pw) === sanitize(post.join_pw2)){
                 if(sanitize(post.join_name).length > 0){
@@ -112,7 +123,7 @@ router.post('/join_process', function(req, res){
                                   }
                                 );
                                 res.setHeader("Cache-Control", "no-store");
-                                res.redirect(`/`);
+                                res.send('<script>alert("회원가입이 완료되었습니다.");         window.location.href="/"</script>');
                             });
                            });
                           });
@@ -147,6 +158,11 @@ router.post('/join_process', function(req, res){
               res.send('<script>alert("비밀번호를 입력해주세요.");window.location.href="/auth/join"</script>');
             }
         }
+        else{
+          res.setHeader("Cache-Control", "no-store");
+          res.send('<script>alert("아이디는 영문과 숫자만 입력해주세요.");window.location.href="/auth/join"</script>');
+        }
+      }
         else{
           res.setHeader("Cache-Control", "no-store");
           res.send('<script>alert("중복된 아이디입니다.");window.location.href="/auth/join"</script>');

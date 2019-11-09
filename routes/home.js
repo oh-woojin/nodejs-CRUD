@@ -5,9 +5,9 @@ var auth = require('../lib/authsts');
 
 router.get('/', function (req, res) {
     var title = 'HOME';
-    var des = 'WELCOME To Scheduler'
+    var home = mainhome.HOME();
     var html = mainhome.HTML(title,
-       `<h2>${des}</h2>`,
+       home,
        auth.StatusUI(req, res)
     );
     res.writeHead(200);
