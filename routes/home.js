@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var mainhome = require('../lib/html');
-var auth = require('../lib/authsts');
+var mainhome = require('../view/html');
+var auth = require('../control/authsts');
 
 router.get('/', function (req, res) {
-    var title = 'HOME';
+    var title = 'DWRN';
     var home = mainhome.HOME();
     var html = mainhome.HTML(title,
        home,

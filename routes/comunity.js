@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var mainhome = require('../lib/html');
-var auth = require('../lib/authsts');
+var mainhome = require('../view/html');
+var auth = require('../control/authsts');
 var db = require('./db');
-var paging = require('../lib/paging');
+var paging = require('../control/paging');
 var sanitize = require('sanitize-html');
 
 
@@ -23,7 +23,7 @@ router.get('/create', function (req, res) {
     var title = 'create';
         var html = mainhome.HTML(title,
            `<h2>${title}</h2>
-           ${mainhome.BOARD_CREATE()}`
+           ${mainhome.BOARD_CREATE(req.session)}`
            ,
           auth.StatusUI(req, res)
         );
@@ -60,7 +60,7 @@ router.post('/create_process', function(req, res){
 router.get('/:page', function (req, res) {
     var countList = 10;
     var page = req.params.page;
-    db.query(`SELECT pin, title, date_format(regdate, '%Y-%m-%d') regdate, hit, name FROM comunity_board ORDER BY pin DESC`, function(error, result){
+    db.query(`SELECT num, title, date_format(regdate, '%Y-%m-%d') regdate, hit, name FROM comunity_board ORDER BY num DESC`, function(error, result){
         if(result.length === 0){
             var title = 'Comunity';
             var html = mainhome.HTML(title,
@@ -107,28 +107,28 @@ router.get('/:page', function (req, res) {
 router.get('/read/:page', function (req, res) {
     var page = req.params.page;
     var query = req.query.id;
-    var TEst ="";
+    var comment_right ="";
     var countList = 5;
-    db.query(`SELECT userid FROM comunity_board WHERE pin=?`,[page],
+    db.query(`SELECT userid FROM comunity_board WHERE num=?`,[page],
          function(error, results){  //수정 삭제버튼을 위해 db에서 글쓴이 id 가져오기
              if(error){
                  throw error;
              }
-             db.query(`SELECT pin, title, content, date_format(regdate, '%Y-%m-%d') regdate, hit, name FROM comunity_board WHERE pin=${page}`, function(error1, result){ //게시판 상세보기
+             db.query(`SELECT num, title, content, date_format(regdate, '%Y-%m-%d') regdate, hit, name FROM comunity_board WHERE num=${page}`, function(error1, result){ //게시판 상세보기
                 if(error1){
                     throw error1;
-                } db.query(`UPDATE comunity_board SET hit=hit+1 WHERE pin=${page}`,
+                } db.query(`UPDATE comunity_board SET hit=hit+1 WHERE num=${page}`,
                 function(error, result2){    //게시판 조회수 증가
                     if(req.session.loggedin){
                         if(req.session.username === results[0].userid){
-                          TEst = auth.ComunityUI(req, result[0].title,result[0].content);
+                            comment_right = auth.ComunityUI(req, result[0].title,result[0].content);
                               } //게시판 주인이면 수정 삭제버튼 활성화
                             }
                     db.query(`SELECT pin, username, userid, content, date_format(date, '%Y-%m-%d %H:%i') date FROM comunity_comment WHERE num=? ORDER BY pin DESC`,[page], function(error2,result2){ //현재 게시판 page로 댓글 찾기
                         if(error2){
                             throw error2;
                         }
-                        var view = mainhome.BOARD_VIEW(result[0].title, result[0].regdate, result[0].hit, result[0].name, result[0].content, TEst);
+                        var view = mainhome.BOARD_VIEW(result, comment_right);
                         var title = 'Comunity';
                         var pagingnum = paging.COMMENT_PAGING(req, result2);
                         var comment = mainhome.BOARD_COMMENT(req,query,result2,countList, page);
@@ -152,8 +152,8 @@ router.post('/read/update', function(req, res){
         var body = req.body;
         var cleartitle = sanitize(body.title);
         var clearcontent = sanitize(body.content);
-        var clearpin = sanitize(body.pin);
-        var update = mainhome.BOARD_UPDATE(cleartitle, clearcontent, clearpin);
+        var clearnum = sanitize(body.num);
+        var update = mainhome.BOARD_UPDATE(cleartitle, clearcontent, clearnum);
         var html = mainhome.HTML(title,
            `<h2>${title}</h2>
            ${update}`,
@@ -167,24 +167,24 @@ router.post('/read/update_process', function(req, res){
     var body = req.body;
     var cleartitle = sanitize(body.title);
     var clearcontent = sanitize(body.content);
-    var clearpin = sanitize(body.pin);
-    db.query(`UPDATE comunity_board SET title=?, content=? WHERE pin=?`, [cleartitle, clearcontent, clearpin], function(error, result){
+    var clearnum = sanitize(body.num);
+    db.query(`UPDATE comunity_board SET title=?, content=? WHERE num=?`, [cleartitle, clearcontent, clearnum], function(error, result){
         if(error){
             throw error;
         }
         res.setHeader("Cache-Control", "no-store");
-        res.redirect(`/comunity/read/${clearpin}?id=1`);
+        res.redirect(`/comunity/read/${clearnum}?id=1`);
     });
 }); //sanitize 적용 완료
 
 
 router.post('/read/delete', function(req, res){
     var post = req.body;
-    var clearpin = sanitize(post.pin);
-    db.query('DELETE FROM comunity_board WHERE pin=?', [clearpin], function(error, result){
+    var clearnum = sanitize(post.num);
+    db.query('DELETE FROM comunity_board WHERE num=?', [clearnum], function(error, result){
         if(error){
           throw error;
-        }db.query('DELETE FROM comunity_comment WHERE num=?', [clearpin], function(error2, results){
+        }db.query('DELETE FROM comunity_comment WHERE num=?', [clearnum], function(error2, results){
             res.setHeader("Cache-Control", "no-store");
             res.redirect(`/comunity`);
         })

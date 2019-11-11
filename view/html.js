@@ -17,7 +17,7 @@ HTML:function(title, body, authStatusUI = `
       <title>${title}</title>
     </head>
       <body>
-          <nav class="navbar navbar-expand-md sticky-top">
+          <nav class="navbar navbar-expand-sm sticky-top">
           <div class="navbar-collapse collapse  order-1 order-md-0 dual-collapse2" id="menu1">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item leftmenu" id="nav-leftmenu"><a class="nav-link" id="hover-menu" href="/worklist">WorkList</a></li>
@@ -95,90 +95,60 @@ HTML:function(title, body, authStatusUI = `
           </div>`
 },
 LOGIN:function(){
-  return`
-        <div id="loginID">
-          <div>
-          아이디 비밀번호를 입력 후, 로그인 버튼을 눌러주세요.
-          </div>
-          <form action = "/auth/login_process" method="post">
-          <p><span>
-          <input type="text" name="idname" placeholder="ID">
-          </span></p>
-          <p><span>
-          <input type="password" name="password" placeholder="PASSWORD">
-          </span></p>
-          <p>
-          <button type="submit" name="loginsubmit">로 그 인</button>
-          </p>
-          </form>
-        </div>  `;
+  return` <div class="login-centerd">
+  <div class="container" id="login-container">
+  <form class="login-form" action="/auth/login_process" method="post">
+      <h1>로그인</h1>
+      <p>아이디 패스워드 입력후 로그인 버튼을 눌러주세요.</p>
+      <hr>
+          <input class="input-login" type="text" placeholder="UserID" name="idname" required>
+  
+        <input class="input-login" type="password" placeholder="Password" name="password" required>
+  
+        <button class="login-button"type="submit">Login</button>
+  </form>
+    </div>
+    </div>`;
 },JOIN:function(year, month, day, b){
   return `
-        <div id="join">
-        <p>
-        회 원 가 입
-        </p>
-        <div>
-        <form action = "/auth/join_process" method="post">
-          <table>
-            <tr>
-            <td>
-              <input type = "text" name = "join_id" placeholder = "아이디">
-            </td>
-            </tr>
-            <tr>
-            <td>
-              <input type = "password" name = "join_pw" placeholder = "비밀번호">
-            </td>
-            </tr>
-            <tr>
-            <td>
-              <input type = "password" name = "join_pw2" placeholder = "비밀번호 확인">
-            </td>
-            </tr>
-            <tr>
-            <td>
-              <input type = "text" name = "join_name" placeholder = "이름">
-            </td>
-            </tr>
-            <tr>
-            <td>
-              <input type = "text" name = "join_phone" placeholder = "전화번호(-빼고 입력)">
-            </td>
-            </tr>
-            <tr>
-            <td>
-              <input type = "email" name = "join_email" placeholder = "이메일">
-            </td>
-            </tr>
-            <tr>
-            <td>
-            <span>생년월일</span>
-              <select name = "join_year">${year}
-              </select>
-              <select name = "join_month">${month}
-              </select>
-              <select name = "join_day">${day}
-              </select>
-            </td>
-            </tr>
-            <tr>
-            <td>
-            <input type="submit" value="회원가입" onclick="return confirm('회원가입 하시겠습니까?')">
-            </td>
-            </tr>
-            </table>
-        </form>
-        </div>
-        </div>
-        <script>
-        var a = document.getElementById('joinMargin');
-        var b = document.getElementById('get-weather');
-        </script>`    
+  <div class="container" id="join-container">
+   	 <div class="join-centerd">
+		<form class="join-form" action="/auth/join_process" method="post">
+          <h1>회원가입</h1>
+          <p>아래 입력칸을 입력하고 회원가입을 클릭하세요.</p>
+          <hr>
+
+          <input class="input-join" type="text" placeholder="UserID" name="join_id" required>
+
+          <input class="input-join" type="password" placeholder="Password" name="join_pw" required>
+
+          <input class="input-join" type="password" placeholder="Repeat Password" name="join_pw2" required>
+
+          <input class="input-join" type = "text" name = "join_name" placeholder = "Name">
+
+          <input class="input-join" type = "text" name = "join_phone" placeholder = "Phone (Insert Only number)">
+
+          <input class="input-join" type = "email" name = "join_email" placeholder = "Email">
+
+          <p class="join-birth-margin"><b>생년월일</b></p>
+ 					<select class="join-birth" name = "join_year">${year}
+          </select>
+          <select class="join-birth" name = "join_month">${month}
+          </select>
+          <select class="join-birth" name = "join_day">${day}
+          </select>
+            <button type="submit" class="join-btn">회원가입</button>
+	</form>
+   </div>
+ </div>
+  `    
 },
 WORKLI:function(results){
           var i = 0;
-          var text = '<div class="container">';
+          var text = '<div class="container"> <p> <a href = "/worklist/worklist_create" id = "List_create">create<a></p><p>';
+          if(results.length === 0){
+            text += '<h1 class="noworklist">목록이 없습니다.</h1>'
+          }else{
           while(i < sanitize(results.length)){
               text += `<div><button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal${i}" id="work_button_color">${sanitize(results[i].title)}</button>
               <form action = "/worklist/delete_process" method="post" id="work_align">
@@ -207,6 +177,7 @@ WORKLI:function(results){
               `
               i++;
            }
+          }
            return text +='</div>';
 },
 WORKLI_C:function(){
@@ -236,8 +207,8 @@ BOARD:function(page, result, countList) {
         if(i>listlength){
           i++;
         } else{
-          var data = result[i];   
-        comunity_list += `<tr><td id="tablenum">${listlength-(i-1)}</td><td id="tabletitle"><a href="/comunity/read/${data.pin}?id=1">${sanitize(result[i].title)}</a></td><td id="tableview">${sanitize(result[i].hit)}</td><td id="tabledate">${sanitize(result[i].regdate)}</td><td id="tableauthor">${sanitize(result[i].name)}</td></tr>`
+          var data = result[i];                 //내림차순으로 최신 글목록부터 보이게함
+        comunity_list += `<tr><td id="tablenum">${listlength-(i-1)}</td><td id="tabletitle"><a href="/comunity/read/${data.num}?id=1">${sanitize(result[i].title)}</a></td><td id="tableview">${sanitize(result[i].hit)}</td><td id="tabledate">${sanitize(result[i].regdate)}</td><td id="tableauthor">${sanitize(result[i].name)}</td></tr>`
         }
     }
     return comunity_list +'</tbody></table><div id="tablecreate"><a href="/comunity/create">글쓰기</div></div>';
@@ -255,21 +226,21 @@ BOARD_CREATE:function(){
           </div>
           </form>`
 },
-BOARD_VIEW:function(title, date, hit, name, content, control){
+BOARD_VIEW:function(result, control){
   return `
   <div class="container">
   <table class="table">
   <thead>
     <tr>
-      <th id="board_title">${sanitize(title)}</th>
-      <th id="board_right">${sanitize(date)}</th>
-      <th id="board_right">조회수 ${sanitize(hit)}</th>
-      <th id="board_right_name">${sanitize(name)}</th>
+      <th id="board_title">${sanitize(result[0].title)}</th>
+      <th id="board_right">${sanitize(result[0].regdate)}</th>
+      <th id="board_right">조회수 ${sanitize(result[0].hit)}</th>
+      <th id="board_right_name">${sanitize(result[0].name)}</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td colspan="4" id="board_content">${sanitize(content)}</td>
+      <td colspan="4" id="board_content"><pre>${sanitize(result[0].content)}</pre></td>
     </tr>
   </tbody>
 </table>
@@ -277,13 +248,13 @@ BOARD_VIEW:function(title, date, hit, name, content, control){
 ${control}
   `
 },
-BOARD_UPDATE:function(title, content, pin){
+BOARD_UPDATE:function(title, content, num){
   return `
   <form action="/comunity/read/update_process" method="post">
   <div class="container">
     <div class="form-group">
       <input type="text" class="form-control" id="board-create-title" name="title" value="${sanitize(title)}">
-      <input type="hidden" name="pin" value="${sanitize(pin)}">
+      <input type="hidden" name="num" value="${sanitize(num)}">
       <textarea name="content" class="form-control" id="board-create-content" rows="8">${sanitize(content)}</textarea>
       <div id="board_upbtn">
       <button type="submit" class="btn btn-link" id="update_link" onclick="return confirm('수정하겠습니까??')">수정완료</button>
@@ -303,7 +274,7 @@ BOARD_COMMENT:function(req,page, comment, countList, location, paging){
       bdcomment = `<div class="container"><p id=comment_title>댓글없음</p>`;
      }
   }
-  for(var i=(page*countList)-countList; i<(page*countList); i++)
+  for(var i=(page*countList)-countList; i<(page*countList); i++) //댓글 목록 가져오기
     {
         if(i>listlength){
           i++;
@@ -315,7 +286,8 @@ BOARD_COMMENT:function(req,page, comment, countList, location, paging){
             <input type="hidden" name="pin" value="${sanitize(comment[i].pin)}">
             <input type="hidden" name="location" value="${sanitize(location)}">
             </form>
-            <tr><td colspan ="2" id="board_comment_content">${sanitize(data.content)}</td></tr>` //권한 있는 사용자일경우 댓글 삭제 활성화
+            <tr><td colspan ="2" id="board_comment_content">${sanitize(data.content)}</td></tr>` 
+            //권한 있는 사용자일경우 댓글 삭제 활성화
            }else{
             bdcomment += `<tr><tr id="board_comment_top">
             <tr id="bdcomment"><td id="board_comment_name">${sanitize(data.username)}</td>
@@ -349,35 +321,33 @@ BOARD_COMMENT:function(req,page, comment, countList, location, paging){
 
 
 },MYPAGEPW_CHECK:function(){
-   return `<div id="mypage_pwcheck">
-          <div>
-          비밀번호를 입력해주세요.
-          </div>
-          <form action = "/auth/mypage_process" method="post">
-          <p><span>
-          <input type="password" name="password" placeholder="PASSWORD">
-          </span></p>
-          <p>
-          <button type="submit" name="loginsubmit">입력</button>
-          </p>
-          </form>
-        </div>  `
+   return `
+   <div class="mypage-centerd">
+   <div class="container" id="mypage-container">
+   <form class="mypage-form" action="/auth/mypage_process" method="post">
+       <h1>마이페이지</h1>
+       <p>비밀번호를 입력해주세요.</p>
+       <hr>
+       
+         <input class="input-mypage" type="password" placeholder="Password" name="password" required>
+   
+         <button class="mypage-button"type="submit">Login</button>
+   </form>
+     </div>
+     </div> `
 },MYPAGE_CHANGE:function(){
-  return `<div id="mypage_pwcheck">
-            <div>
-            변경할 비밀번호를 입력해주세요.
-            </div>
-            <form action = "/auth/pwchange_process" method="post">
-            <p><span>
-            <input type="password" name="mypage_pw" placeholder="비밀번호">
-            </span></p>
-            <p><span>
-            <input type="password" name="mypage_pw2" placeholder="비밀번호 확인">
-            </span></p>
-            <p>
-            <button type="submit" name="loginsubmit">변경</button>
-            </p>
-            </form>
-            </div>`
-  }
+  return `
+        <div class="mypage-centerd">
+        <div class="container" id="mypage-container">
+        <form class="mypage-form" action="/auth/pwchange_process" method="post">
+            <h1>마이페이지</h1>
+            <p>변경할 비밀번호를 입력해주세요.</p>
+            <hr>
+            <input class="input-mypage" type="password" placeholder="Password" name="mypage_pw">
+            <input class="input-mypage" type="password" placeholder="Repeat Password" name="mypage_pw2">
+            <button class="mypage-button"type="submit">변경</button>
+        </form>
+          </div>
+          </div> `
+}
 }

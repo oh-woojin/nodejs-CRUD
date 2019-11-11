@@ -26,13 +26,13 @@ module.exports = {
             <form action="/comunity/read/update" method="post" class="comunity_inline">
                 <input type="hidden" name="title" value="${sanitize(title)}">
                 <input type="hidden" name="content" value="${sanitize(content)}">
-                <input type="hidden" name="pin" value="${sanitize(req.params.page)}">
+                <input type="hidden" name="num" value="${sanitize(req.params.page)}">
                 <button type="submit" class="btn btn-link" id="comunity_btn_update_link">수정</button>
             </form>
             <form action="/comunity/read/delete" method="post" class="comunity_inline">
                 <input type="hidden" name="title" value="${sanitize(title)}">
                 <input type="hidden" name="content" value="${sanitize(content)}">
-                <input type="hidden" name="pin" value="${sanitize(req.params.page)}">
+                <input type="hidden" name="num" value="${sanitize(req.params.page)}">
                 <button type="submit" class="btn btn-link" id="comunity_btn_delete_link"  onclick="return confirm('삭제하겠습니까?')">삭제</button>
             </form>
             </div>`; //권한있는 사용자일경우 게시판 글 수정 삭제 가능기능

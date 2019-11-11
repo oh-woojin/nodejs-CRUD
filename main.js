@@ -26,31 +26,4 @@ app.use('/auth', authRouter);
 app.use('/worklist', worklist);
 app.use('/comunity', comunity);
 
-
-
-//app.use('/join_process', authRouter);
-
-/*
-var app = http.createServer(function(request,response){
-    var _url = request.url;
-    var queryData = url.parse(_url, true).query;
-    var pathname = url.parse(_url, true).pathname;
-    console.log(pathname);
-    if(pathname === '/'){
-      page.home(request, response);
-    } else if(pathname === '/login'){
-      page.login(request, response)
-    } else if(pathname === '/join'){
-      page.join(request, response)
-    } else if(pathname === '/join_process'){
-      page.join_process(request, response)
-
-    }
-
-      else{
-        response.writeHead(404);
-        response.end('Not found');
-      }
-});
-*/
 app.listen(80);

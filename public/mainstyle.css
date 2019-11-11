@@ -84,10 +84,17 @@
   overflow: hidden;
   padding-left: 0px;
 }
+.noworklist{
+  margin-top: 150px;
+}
 
 #List_create {
   text-decoration: none;
   color:DimGray ;
+}
+
+#List_create:hover{
+  text-decoration:underline;
 }
 
 
@@ -138,56 +145,144 @@
   font-size: 20px;
 }
 
-#loginID{
-  text-align: center;
-  margin-top: 150px;
-}
-
-#loginID div{
-  margin-bottom: 20px;
-}
-
-#loginID p{
-  margin-top: 1px;
-  margin-bottom: 1px;
-}
-
-#loginID span input{
-  height: 30px;
-  width: 300px;
-}
-
-#loginID button{
-  height: 35px;
-  width: 305px;
-}
-
-#join{
-  text-align: center;
-  margin-top: 150px;
-}
-
-#join p{
-  font-size: 30px;
-  margin-bottom: 10px;
-}
-
-#join form{
+.input-login {
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px 0;
   display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
-#join input{
-  height: 30px;
-  width: 300px;
+.login-button {
+  background-color:gray;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 90%;
 }
 
-#join select{
-  height: 30px;
-  width: 70px;
+.login-button:hover {
+  opacity: 0.8;
 }
 
-#join span{
-  font-weight: bold;
+#login-container {
+  padding: 16px;
+  text-align:center;
+  display:inline;
+}
+
+.login-form{
+	display:inline-block;
+}
+.login-centerd{
+	text-align:center;
+}
+
+.input-join {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+.join-btn:hover {
+  opacity:1;
+}
+
+.join-btn {
+  width: 90%;
+  background-color: gray;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  margin-top:20px;
+}
+
+#join-container{
+	padding: 16px
+}
+
+.join-centerd{
+	text-align:center;
+}
+
+.join-form{
+    width:700px;
+	display:inline-block;
+}
+
+.join-birth{
+  width:29.6%;
+  height:40px;
+}
+
+.join-birth-margin{
+  margin-top:10px;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 678px) {
+ .join-form {
+     width: 100%;
+  }
+}
+
+.input-mypage {
+  width: 90%;
+  height:50px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.mypage-button {
+  background-color:gray;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 90%;
+  height:50px;
+}
+
+.mypage-button:hover {
+  opacity: 0.8;
+}
+
+#mypage-container {
+  padding: 16px;
+  text-align:center;
+  display:inline;
+}
+
+.mypage-form{
+	width:600px;
+	display:inline-block;
+}
+.mypage-centerd{
+	text-align:center;
+}
+
+@media screen and (max-width: 608px) {
+ .mypage-form {
+     width: 100%;
+  }
 }
 
 #title {
@@ -399,42 +494,6 @@
 
 #tablecreate{
   text-align: right;
-}
-
-#mypage_pwcheck{
-  text-align: center;
-  margin-top: 80px;
-}
-
-#mypage_pwcheck div{
-  margin-bottom: 20px;
-  font-size: 17px;
-  font-weight: normal;
-}
-
-#mypage_pwcheck p{
-  margin-top: 1px;
-  margin-bottom: 1px;
-}
-
-#mypage_pwcheck span input{
-  height: 30px;
-  width: 300px;
-}
-
-#mypage_pwcheck button{
-  height: 35px;
-  width: 305px;
-}
-
-body {
-  background-size: cover;
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  height: calc(100vh - 0px);
-          min-height: 300px;
 }
 
 a{
